@@ -1,0 +1,45 @@
+# Deploy en Render con un clic (Blueprint): web service + Postgres administrado
+services:
+  - type: web
+    name: consultorio
+    runtime: node
+    # Ojo: el plan free duerme el servicio cuando no hay tráfico y el worker no corre.
+    # Para usarlo con pacientes reales: plan "starter" o el cron de .github/workflows/despertar.yml
+    plan: free
+    buildCommand: npm ci --include=dev && npm run build
+    # Migra, carga los datos de demo si la base está vacía y arranca
+    startCommand: npm run migrate && npm run seed && npm start
+    healthCheckPath: /api/salud
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: RUN_WORKER
+        value: "true"
+      # Carga usuarios de demo con contraseña pública (demo1234). Sacalo antes de usarlo con pacientes reales.
+      - key: SEED_DEMO
+        value: "true"
+      - key: DATABASE_SSL
+        value: "true"
+      - key: DATABASE_URL
+        fromDatabase: { name: consultorio-db, property: connectionString }
+      - key: WEBHOOK_SECRET
+        generateValue: true
+      - key: CRON_SECRET
+        generateValue: true
+      - key: WHATSAPP_TOKEN
+        sync: false
+      - key: WHATSAPP_PHONE_ID
+        sync: false
+      - key: WHATSAPP_VERIFY_TOKEN
+        generateValue: true
+      - key: WHATSAPP_APP_SECRET
+        sync: false
+      - key: WHATSAPP_TEMPLATE_RECORDATORIO
+        sync: false
+      - key: WHATSAPP_TEMPLATE_LISTA_ESPERA
+        sync: false
+databases:
+  # El Postgres free de Render vence a los 30 días y no tiene backups: con datos reales, usá un plan pago
+  - name: consultorio-db
+    plan: free
+    postgresMajorVersion: "16"

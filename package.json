@@ -1,0 +1,20 @@
+{
+  "name": "consultorio",
+  "private": true,
+  "description": "Sistema de turnos e historia clínica para consultorios. Primer caso: oftalmología.",
+  "workspaces": [
+    "api",
+    "panel"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w api",
+    "build": "npm run build -w panel && npm run build -w api",
+    "start": "npm start -w api",
+    "migrate": "npm run migrate -w api --",
+    "seed": "npm run seed -w api",
+    "test": "npm test -w api",
+    "carrera": "npm run carrera -w api",
+    "backup": "npm run backup -w api",
+    "e2e": "npm run e2e -w panel"
+  }
+}

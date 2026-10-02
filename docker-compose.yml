@@ -1,0 +1,18 @@
+# Postgres local para desarrollo y tests:  docker compose up -d
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: consultorio
+      POSTGRES_PASSWORD: consultorio
+      POSTGRES_DB: consultorio
+    ports: ["5432:5432"]
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./db/crear-test.sql:/docker-entrypoint-initdb.d/crear-test.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U consultorio"]
+      interval: 3s
+      retries: 10
+volumes:
+  pgdata:

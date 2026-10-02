@@ -1,0 +1,909 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dra. Camila Ortiz · Oftalmología</title>
+<meta name="description" content="Consultorio de oftalmología en San Miguel de Tucumán: consultas, OCT, campo visual y topografía corneal. Turnos online en dos minutos.">
+<meta name="theme-color" content="#0E7C7B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.pexels.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:oklch(99.2% .004 190);
+  --bg-soft:oklch(97.3% .011 190);
+  --bg-tint:oklch(94.4% .026 188);
+  --ink:oklch(23% .032 205);
+  --ink-2:oklch(42% .026 205);
+  --ink-3:oklch(57% .02 205);
+  --line:oklch(91.5% .013 195);
+  --line-2:oklch(86% .018 195);
+  --teal:oklch(52.5% .088 192);
+  --teal-700:oklch(43% .075 194);
+  --teal-300:oklch(80% .07 186);
+  --teal-50:oklch(96.6% .018 188);
+  --on-teal:oklch(97.5% .018 185);
+  --on-teal-2:oklch(88% .045 186);
+  --danger:oklch(50% .17 27);
+  --danger-bg:oklch(97% .02 27);
+  --ease:cubic-bezier(.22,1,.36,1);
+  --ease-expo:cubic-bezier(.16,1,.3,1);
+  --serif:"Instrument Serif",Georgia,serif;
+  --sans:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --s-2:clamp(16px,2vw,24px);
+  --s-3:clamp(28px,4vw,48px);
+  --s-4:clamp(56px,8vw,112px);
+  --s-5:clamp(72px,11vw,152px);
+  --t-sm:clamp(13.5px,.85vw + 6px,14.5px);
+  --t-lead:clamp(17px,.6vw + 13px,19.5px);
+  --t-h3:clamp(26px,2.2vw + 10px,36px);
+  --t-h2:clamp(38px,4.6vw + 6px,64px);
+  --t-h1:clamp(46px,5.2vw + 6px,80px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+::selection{background:var(--teal-300);color:var(--ink)}
+.wrap{width:100%;max-width:1220px;margin:0 auto;padding:0 clamp(16px,3vw,32px)}
+h1,h2,h3{margin:0;font-weight:400;letter-spacing:-.022em;line-height:1.02}
+h1,h2{font-family:var(--serif)}
+h1 em,h2 em{font-style:italic;color:var(--teal)}
+p{margin:0}
+.lead{color:var(--ink-2);font-size:var(--t-lead);line-height:1.55;max-width:52ch}
+.kicker{display:flex;align-items:center;gap:14px;font-size:var(--t-sm);font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--teal-700)}
+.kicker::after{content:"";height:1px;width:48px;background:var(--line-2)}
+.kicker b{font-family:var(--serif);font-weight:400;font-size:1.35em;letter-spacing:0;text-transform:none;color:var(--teal)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:54px;padding:0 26px;border-radius:999px;font-weight:600;font-size:16px;text-decoration:none;border:1px solid transparent;cursor:pointer;transition:transform .5s var(--ease),background-color .3s var(--ease),border-color .3s var(--ease)}
+.btn-primary{background:var(--teal);color:var(--on-teal)}
+.btn-primary:hover{background:var(--teal-700);transform:translateY(-1px)}
+.btn-line{background:transparent;border-color:var(--line-2);color:var(--ink)}
+.btn-line:hover{border-color:var(--teal);transform:translateY(-1px)}
+.btn .arr{transition:transform .5s var(--ease)}
+.btn:hover .arr{transform:translateX(4px)}
+.link{font-weight:600;color:var(--teal-700);text-decoration:none;background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .6s var(--ease);padding-bottom:2px}
+.link:hover{background-size:100% 1px}
+.nav{position:sticky;top:0;z-index:50;background:color-mix(in oklch,var(--bg) 94%,transparent);border-bottom:1px solid transparent;transition:border-color .5s var(--ease)}
+.nav.scrolled{border-color:var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:76px}
+.brand{display:flex;align-items:baseline;gap:10px;text-decoration:none}
+.brand b{font-family:var(--serif);font-weight:400;font-size:26px;letter-spacing:-.01em}
+.brand span{font-size:13px;color:var(--ink-3);letter-spacing:.04em}
+.nav-links{display:flex;gap:34px;font-size:15px;color:var(--ink-2)}
+.nav-links a{text-decoration:none;transition:color .3s}
+.nav-links a:hover{color:var(--teal-700)}
+.nav .btn{height:44px;padding:0 20px;font-size:15px}
+.hero{padding:var(--s-3) 0 var(--s-4)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) auto minmax(0,.82fr);gap:clamp(24px,3.4vw,52px);align-items:center}
+.hero h1{font-size:var(--t-h1);margin:var(--s-2) 0}
+.hero .lead{margin-bottom:var(--s-3)}
+.ctas{display:flex;flex-wrap:wrap;gap:12px}
+.next{margin-top:var(--s-3);padding-top:var(--s-2);border-top:1px solid var(--line)}
+.next p{font-size:var(--t-sm);color:var(--ink-3);margin-bottom:12px}
+.next p b{color:var(--ink);font-weight:600}
+.next-row{display:flex;flex-wrap:wrap;gap:8px;min-height:40px}
+.next-row button{height:40px;padding:0 14px;border-radius:10px;border:1px solid var(--line-2);background:var(--bg);font-size:14.5px;font-weight:600;font-variant-numeric:tabular-nums;cursor:pointer;transition:border-color .3s,background-color .3s,transform .5s var(--ease)}
+.next-row button span{font-weight:500;color:var(--ink-3);margin-right:6px}
+.next-row button:hover{border-color:var(--teal);background:var(--teal-50);transform:translateY(-1px)}
+.snellen{font-family:var(--serif);text-align:center;line-height:1.05;padding-bottom:6px;user-select:none}
+.snellen div{letter-spacing:.14em;color:var(--ink)}
+.snellen div:nth-child(1){font-size:clamp(60px,6vw,86px)}
+.snellen div:nth-child(2){font-size:clamp(40px,4vw,56px)}
+.snellen div:nth-child(3){font-size:clamp(28px,2.7vw,38px)}
+.snellen div:nth-child(4){font-size:clamp(20px,1.9vw,26px);color:var(--ink-2)}
+.snellen div:nth-child(5){font-size:clamp(15px,1.3vw,18px);color:var(--ink-3)}
+.snellen div:nth-child(6){font-size:clamp(11px,1vw,13px);color:var(--teal)}
+.snellen small{display:block;margin-top:14px;font-family:var(--sans);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
+.js .snellen div{opacity:0;filter:blur(6px);transition:opacity 1.1s var(--ease),filter 1.4s var(--ease);transition-delay:calc(.35s + var(--i) * .12s)}
+.js .loaded-page .snellen div{opacity:1;filter:none}
+.photo{position:relative;border-radius:4px 4px 120px 4px;overflow:hidden;background:linear-gradient(160deg,var(--bg-tint),oklch(90% .035 188));aspect-ratio:4/5}
+.photo img{width:100%;height:100%;object-fit:cover;opacity:0;filter:blur(18px) saturate(.9);transform:scale(1.06);transition:opacity 1.2s var(--ease),filter 2.2s var(--ease-expo),transform 2.6s var(--ease-expo)}
+.photo img.loaded{opacity:1;filter:none;transform:none}
+.hero .photo{aspect-ratio:3/4}
+.tag{position:absolute;left:16px;bottom:16px;background:var(--bg);border-radius:12px;padding:12px 14px;display:flex;gap:12px;align-items:center;font-size:14px;line-height:1.3}
+.tag small{display:block;color:var(--ink-3);font-size:12.5px}
+.live{width:8px;height:8px;border-radius:50%;background:oklch(65% .15 155);flex:none;animation:live 2.8s var(--ease) infinite}
+@keyframes live{0%{box-shadow:0 0 0 0 oklch(65% .15 155 / .45)}70%,100%{box-shadow:0 0 0 9px oklch(65% .15 155 / 0)}}
+.services{padding:var(--s-5) 0;background:var(--bg-soft);overflow-x:clip}
+.split{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(32px,6vw,96px);align-items:start}
+.split-head{position:sticky;top:110px;display:grid;gap:var(--s-2)}
+.split-head h2{font-size:var(--t-h2)}
+.svc-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line-2)}
+.svc{display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:6px 20px;padding:28px 0 30px;border-bottom:1px solid var(--line-2);align-items:baseline;position:relative}
+.svc::before{content:"";position:absolute;inset:0 -20px;background:var(--bg);border-radius:14px;opacity:0;transform:scaleY(.94);transition:opacity .45s var(--ease),transform .6s var(--ease);z-index:0}
+.svc:hover::before{opacity:1;transform:none}
+.svc>*{position:relative;z-index:1}
+.svc .num{font-family:var(--serif);font-size:20px;color:var(--teal-300)}
+.svc h3{font-family:var(--serif);font-size:var(--t-h3)}
+.svc .dur{font-size:14px;font-weight:600;color:var(--teal-700);font-variant-numeric:tabular-nums;white-space:nowrap}
+.svc p{grid-column:2/4;color:var(--ink-2);font-size:16px;max-width:58ch}
+.svc .go{grid-column:2/4;margin-top:8px;justify-self:start;border:0;padding:0 0 2px;cursor:pointer;font-size:15px;background-color:transparent}
+.about{padding:var(--s-5) 0 var(--s-4)}
+.about-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(36px,7vw,110px);align-items:center}
+.about .photo{border-radius:120px 4px 4px 4px}
+.about blockquote{margin:var(--s-2) 0;font-family:var(--serif);font-size:clamp(30px,3vw + 8px,46px);line-height:1.12;letter-spacing:-.015em}
+.about blockquote::before{content:"“";display:block;font-size:1.8em;line-height:.6;color:var(--teal-300);margin-bottom:10px}
+.about .who{font-size:15px;color:var(--ink-3);margin-bottom:var(--s-3)}
+.about .who b{color:var(--ink);font-weight:600}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;border-top:1px solid var(--line);padding-top:22px}
+.facts span{display:block;font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
+.facts p{font-size:15.5px;color:var(--ink-2);line-height:1.45}
+.tech{padding:var(--s-4) 0 var(--s-5)}
+.tech-head{display:flex;justify-content:space-between;align-items:end;gap:32px;margin-bottom:var(--s-3);flex-wrap:wrap}
+.tech-head h2{font-size:var(--t-h2);max-width:14ch}
+.tech-head .lead{max-width:40ch}
+.gallery{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.85fr) minmax(0,.85fr);gap:clamp(14px,2vw,24px);align-items:start}
+.gallery figure{margin:0}
+.gallery .photo{border-radius:4px}
+.gallery figure:nth-child(1) .photo{aspect-ratio:4/5}
+.gallery figure:nth-child(2){margin-top:clamp(40px,8vw,120px)}
+.gallery figure:nth-child(2) .photo{aspect-ratio:3/4}
+.gallery figure:nth-child(3) .photo{aspect-ratio:3/4.4}
+.gallery figcaption{margin-top:14px;display:grid;gap:2px;font-size:15px;color:var(--ink-2);max-width:34ch}
+.gallery figcaption b{color:var(--ink);font-weight:600}
+.booking{padding:var(--s-5) 0;background:var(--bg-soft);border-top:1px solid var(--line)}
+.book-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,96px);align-items:end;margin-bottom:var(--s-3)}
+.book-head h2{font-size:var(--t-h2);margin-top:var(--s-2)}
+.how{list-style:none;margin:0;padding:0;display:grid;gap:14px;counter-reset:h}
+.how li{display:grid;grid-template-columns:34px 1fr;gap:12px;font-size:15.5px;color:var(--ink-2);align-items:baseline}
+.how li::before{counter-increment:h;content:counter(h);font-family:var(--serif);font-size:24px;color:var(--teal);line-height:1}
+.how b{color:var(--ink);font-weight:600}
+.book{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,.9fr);gap:clamp(16px,2vw,24px);align-items:start}
+.book>*{min-width:0}
+.panel{background:var(--bg);border:1px solid var(--line);border-radius:20px;padding:clamp(20px,3vw,36px)}
+.bstep+.bstep{margin-top:32px;padding-top:28px;border-top:1px solid var(--line)}
+.bstep h3{font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);margin-bottom:16px;display:flex;gap:10px}
+.bstep h3 i{font-style:normal;color:var(--teal)}
+.opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px}
+.opt{text-align:left;background:var(--bg);border:1px solid var(--line-2);border-radius:12px;padding:13px 15px;cursor:pointer;transition:border-color .3s,background-color .3s,transform .5s var(--ease)}
+.opt:hover{border-color:var(--teal);transform:translateY(-1px)}
+.opt b{display:block;font-size:15px;font-weight:600}
+.opt span{font-size:13.5px;color:var(--ink-3)}
+.opt[aria-pressed="true"]{border-color:var(--teal);background:var(--teal-50);box-shadow:inset 0 0 0 1px var(--teal)}
+.days{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 8px;scroll-snap-type:x mandatory;scrollbar-width:thin}
+.day{flex:none;scroll-snap-align:start;width:68px;padding:11px 0;border-radius:12px;border:1px solid var(--line-2);background:var(--bg);text-align:center;cursor:pointer;transition:border-color .3s,background-color .3s,transform .5s var(--ease)}
+.day:hover{border-color:var(--teal);transform:translateY(-1px)}
+.day small{display:block;font-size:12px;color:var(--ink-3);text-transform:capitalize}
+.day b{display:block;font-size:20px;font-weight:600;line-height:1.3;font-variant-numeric:tabular-nums}
+.day i{display:block;font-style:normal;font-size:11.5px;color:var(--teal-700)}
+.day i.full{color:var(--ink-3)}
+.day[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:var(--on-teal)}
+.day[aria-pressed="true"] small,.day[aria-pressed="true"] i{color:var(--on-teal-2)}
+.slot-group+.slot-group{margin-top:18px}
+.slot-group p{margin:0 0 10px;font-size:12.5px;font-weight:700;color:var(--ink-3);letter-spacing:.07em;text-transform:uppercase}
+.slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(76px,1fr));gap:8px}
+.slot{height:42px;border-radius:10px;border:1px solid var(--line-2);background:var(--bg);cursor:pointer;font-weight:600;font-size:14.5px;font-variant-numeric:tabular-nums;transition:border-color .3s,background-color .3s,color .3s,transform .5s var(--ease)}
+.slot:hover{border-color:var(--teal);transform:translateY(-1px)}
+.slot[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:var(--on-teal)}
+.empty{padding:22px;border:1px dashed var(--line-2);border-radius:12px;color:var(--ink-3);font-size:15px}
+.notice{font-size:14px;color:var(--teal-700);background:var(--teal-50);border-radius:10px;padding:10px 14px;margin-bottom:14px}
+.summary{position:sticky;top:100px;display:grid;gap:clamp(16px,2vw,24px)}
+.summary h3{font-family:var(--serif);font-size:30px;margin-bottom:14px}
+.sum-row{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15px}
+.sum-row span{color:var(--ink-3)}
+.sum-row b{text-align:right;font-weight:600}
+.hold{display:none;align-items:center;gap:10px;margin-top:16px;font-size:14px;color:var(--teal-700)}
+.hold.on{display:flex}
+.hold .bar{flex:1;height:3px;border-radius:3px;background:var(--line);overflow:hidden}
+.hold .bar i{display:block;height:100%;background:var(--teal);transform-origin:left;transition:transform 1s linear}
+.hold b{font-variant-numeric:tabular-nums}
+.reveal-rows{display:grid;grid-template-rows:0fr;transition:grid-template-rows .7s var(--ease)}
+.reveal-rows.on{grid-template-rows:1fr}
+.reveal-rows>div{overflow:hidden}
+.form{display:grid;gap:12px;padding-top:20px;opacity:0;transition:opacity .5s var(--ease)}
+.reveal-rows.on .form{opacity:1;transition-delay:.15s}
+.field label{display:block;font-size:13.5px;font-weight:600;margin-bottom:6px;color:var(--ink-2)}
+.field input,.field select{width:100%;height:48px;border:1px solid var(--line-2);border-radius:10px;padding:0 14px;background:var(--bg);transition:border-color .3s,box-shadow .3s}
+.field input:focus,.field select:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px color-mix(in oklch,var(--teal) 18%,transparent)}
+.field .err{display:none;font-size:13px;color:var(--danger);margin-top:5px}
+.field.bad input{border-color:var(--danger)}
+.field.bad .err{display:block}
+.form .btn{width:100%;margin-top:4px}
+.msg{display:none;margin-top:16px;padding:13px 15px;border-radius:12px;font-size:14.5px}
+.msg.on{display:block;animation:rise .6s var(--ease)}
+.msg.error{background:var(--danger-bg);color:var(--danger)}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.success{display:none;padding:6px 0}
+.success.on{display:block;animation:rise .8s var(--ease)}
+.check{width:56px;height:56px;margin-bottom:18px;border-radius:50%;background:var(--teal-50);display:grid;place-items:center}
+.check path{stroke-dasharray:30;stroke-dashoffset:30;animation:draw .9s .2s var(--ease) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.success p{color:var(--ink-2);font-size:15.5px;margin:8px 0 20px}
+.fine{font-size:13px;color:var(--ink-3);margin-top:14px}
+.dev{border:1px solid var(--line);border-radius:16px;background:var(--bg)}
+.dev summary{list-style:none;cursor:pointer;padding:15px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:14.5px;font-weight:600}
+.dev summary::-webkit-details-marker{display:none}
+.dev summary em{font-style:normal;font-size:12px;font-weight:600;color:var(--teal-700);white-space:nowrap}
+.dev-body{padding:0 18px 18px}
+.toggle{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--ink-2);margin-bottom:12px;cursor:pointer}
+.toggle input{accent-color:var(--teal);width:18px;height:18px;margin-top:2px;flex:none}
+.log{background:oklch(22% .028 205);color:oklch(90% .03 186);border-radius:12px;padding:14px 16px;font:12.5px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;max-height:260px;overflow:auto;white-space:pre-wrap;word-break:break-word}
+.log .ok{color:oklch(84% .12 165)}
+.log .bad{color:oklch(78% .12 25)}
+.log .dim{color:oklch(62% .03 195)}
+.faq{padding:var(--s-5) 0}
+.qa{border-bottom:1px solid var(--line-2)}
+.qa:first-child{border-top:1px solid var(--line-2)}
+.qa button{width:100%;background:none;border:0;text-align:left;padding:26px 0;display:flex;justify-content:space-between;align-items:center;gap:20px;font-family:var(--serif);font-size:clamp(22px,1.6vw + 12px,30px);letter-spacing:-.01em;line-height:1.2;cursor:pointer}
+.qa .pm{position:relative;width:18px;height:18px;flex:none}
+.qa .pm::before,.qa .pm::after{content:"";position:absolute;left:0;right:0;top:50%;height:1.5px;background:var(--teal);transition:transform .6s var(--ease)}
+.qa .pm::after{transform:rotate(90deg)}
+.qa[data-open="true"] .pm::after{transform:rotate(0)}
+.qa .ans{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s var(--ease)}
+.qa[data-open="true"] .ans{grid-template-rows:1fr}
+.qa .ans>div{overflow:hidden}
+.qa .ans p{padding:0 0 26px;color:var(--ink-2);max-width:62ch}
+.contact{background:var(--teal);color:var(--on-teal);padding:var(--s-4) 0}
+.contact-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(32px,6vw,96px);align-items:end}
+.contact h2{font-size:var(--t-h2);margin-bottom:var(--s-2)}
+.contact h2 em{color:var(--on-teal-2)}
+.contact .lead{color:var(--on-teal-2);margin-bottom:var(--s-3)}
+.contact .btn-primary{background:var(--on-teal);color:var(--teal-700)}
+.contact .btn-primary:hover{background:oklch(100% 0 0)}
+.contact .btn-line{color:var(--on-teal);border-color:color-mix(in oklch,var(--on-teal) 40%,transparent)}
+.contact .btn-line:hover{border-color:var(--on-teal)}
+.info{display:grid}
+.info div{padding:18px 0;border-top:1px solid color-mix(in oklch,var(--on-teal) 22%,transparent);display:grid;grid-template-columns:120px 1fr;gap:16px}
+.info div:last-child{border-bottom:1px solid color-mix(in oklch,var(--on-teal) 22%,transparent)}
+.info span{color:var(--on-teal-2);font-size:14px}
+footer{padding:36px 0 48px;color:var(--ink-3);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer a{color:var(--ink-2)}
+.js .rv{opacity:0;transform:translateY(18px);transition:opacity 1.1s var(--ease),transform 1.2s var(--ease);transition-delay:var(--d,0s)}
+.js .rv.in{opacity:1;transform:none}
+.mcta{display:none}
+@media (max-width:1020px){
+  .hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,.8fr)}
+  .snellen{display:none}
+  .split,.book-head,.book,.about-grid,.contact-grid{grid-template-columns:minmax(0,1fr)}
+  .split-head,.summary{position:static}
+  .nav-links{display:none}
+  .gallery{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .gallery figure:nth-child(1){grid-column:1/-1}
+  .gallery figure:nth-child(1) .photo{aspect-ratio:16/10}
+  .gallery figure:nth-child(2){margin-top:0}
+}
+@media (max-width:680px){
+  body{font-size:16px}
+  .hero-grid{grid-template-columns:minmax(0,1fr)}
+  .hero .photo{aspect-ratio:4/3.4;border-radius:4px 4px 64px 4px}
+  .about .photo{border-radius:64px 4px 4px 4px;aspect-ratio:4/4.2}
+  .facts{grid-template-columns:minmax(0,1fr);gap:14px}
+  .svc{grid-template-columns:36px minmax(0,1fr) auto}
+  .info div{grid-template-columns:minmax(0,1fr);gap:2px}
+  .nav .btn{display:none}
+  .kicker::after{display:none}
+  .mcta{display:flex;position:fixed;left:16px;right:16px;bottom:16px;z-index:60;transform:translateY(130%);transition:transform .7s var(--ease)}
+  .mcta.on{transform:none}
+  .mcta .btn{width:100%}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .js .rv,.js .snellen div{opacity:1;transform:none;filter:none}
+  .check path{stroke-dashoffset:0}
+  .photo img{opacity:1;filter:none;transform:none}
+}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js')</script>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#" class="brand" aria-label="Inicio"><b data-cfg="marca">Camila Ortiz</b><span data-cfg="especialidad">Oftalmología</span></a>
+    <nav class="nav-links" aria-label="Secciones">
+      <a href="#estudios">Estudios</a>
+      <a href="#doctora">La doctora</a>
+      <a href="#tecnologia">Tecnología</a>
+      <a href="#preguntas">Preguntas</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <a href="#turnos" class="btn btn-primary">Sacar turno</a>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="kicker rv" data-cfg="kicker">Oftalmología · San Miguel de Tucumán</p>
+      <h1 class="rv" style="--d:.06s">Ver bien empieza por un <em>buen diagnóstico</em>.</h1>
+      <p class="lead rv" style="--d:.14s">Consultas, estudios y controles en el mismo consultorio. Sin derivaciones, sin llamadas: elegís el horario y listo.</p>
+      <div class="ctas rv" style="--d:.2s">
+        <a href="#turnos" class="btn btn-primary">Sacar turno online <span class="arr" aria-hidden="true">→</span></a>
+        <a href="#estudios" class="btn btn-line">Ver estudios</a>
+      </div>
+      <div class="next rv" style="--d:.28s">
+        <p><b>Próximos turnos de consulta</b> · tocá uno para reservarlo</p>
+        <div class="next-row" id="heroSlots"></div>
+      </div>
+    </div>
+    <div class="snellen" aria-hidden="true">
+      <div style="--i:0">E</div><div style="--i:1">F P</div><div style="--i:2">T O Z</div><div style="--i:3">L P E D</div><div style="--i:4">P E C F D</div><div style="--i:5">E D F C Z P</div>
+      <small>20/20</small>
+    </div>
+    <div class="rv" style="--d:.1s">
+      <div class="photo">
+        <img src="https://images.pexels.com/photos/33857823/pexels-photo-33857823.jpeg?auto=compress&cs=tinysrgb&w=1100" alt="Consultorio con sillón de examen y lámpara de hendidura" width="1100" height="1460" fetchpriority="high">
+        <div class="tag"><span class="live" aria-hidden="true"></span><span><small>Agenda online</small><b id="nextSlot">Buscando turnos…</b></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="estudios">
+  <div class="wrap split">
+    <div class="split-head">
+      <p class="kicker rv"><b>01</b>Estudios</p>
+      <h2 class="rv" style="--d:.06s">Cada estudio, <em>con su tiempo</em>.</h2>
+      <p class="lead rv" style="--d:.12s">La agenda sabe cuánto dura cada práctica y qué equipo usa, así que nunca vas a esperar porque se superpusieron dos pacientes.</p>
+    </div>
+    <ol class="svc-list" id="svcList">
+      <li class="svc rv"><span class="num">i.</span><h3>Consulta oftalmológica</h3><span class="dur">20 min</span><p>Agudeza visual, graduación, presión ocular y fondo de ojo. Si necesitás anteojos, te vas con la receta.</p><button type="button" class="go link" data-tipo="1">Reservar consulta →</button></li>
+      <li class="svc rv"><span class="num">ii.</span><h3>OCT</h3><span class="dur">30 min</span><p>Tomografía de retina y nervio óptico. Detecta glaucoma y lesiones maculares antes de que se noten.</p><button type="button" class="go link" data-tipo="3">Reservar OCT →</button></li>
+      <li class="svc rv"><span class="num">iii.</span><h3>Campo visual</h3><span class="dur">30 min</span><p>Mide la visión periférica. Es el estudio de control del glaucoma.</p><button type="button" class="go link" data-tipo="4">Reservar campo visual →</button></li>
+      <li class="svc rv"><span class="num">iv.</span><h3>Topografía corneal</h3><span class="dur">25 min</span><p>Mapa de la córnea para adaptar lentes de contacto o evaluar cirugía refractiva.</p><button type="button" class="go link" data-tipo="5">Reservar topografía →</button></li>
+      <li class="svc rv"><span class="num">v.</span><h3>Control postoperatorio</h3><span class="dur">15 min</span><p>Seguimiento de cirugías de cataratas y refractivas, con turnos cortos.</p><button type="button" class="go link" data-tipo="2">Reservar control →</button></li>
+    </ol>
+  </div>
+</section>
+
+<section class="about" id="doctora">
+  <div class="wrap about-grid">
+    <div class="rv">
+      <div class="photo">
+        <img src="https://images.pexels.com/photos/6749781/pexels-photo-6749781.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="La doctora en su consultorio" width="1000" height="1150" loading="lazy">
+      </div>
+    </div>
+    <div>
+      <p class="kicker rv"><b>02</b>La doctora</p>
+      <blockquote class="rv" style="--d:.06s">Una buena consulta es la que te deja tranquilo: sabés qué tenés, qué hacer y cuándo volver.</blockquote>
+      <p class="who rv" style="--d:.1s"><b>Dra. Camila Ortiz</b> · Médica oftalmóloga · M.P. 0000 (demo)</p>
+      <div class="facts rv" style="--d:.16s">
+        <div><span>Formación</span><p>Especialista en Oftalmología</p></div>
+        <div><span>Áreas</span><p>Glaucoma, cataratas y pediatría</p></div>
+        <div><span>Atiende</span><p>Adultos y niños desde los 3 años</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tech" id="tecnologia">
+  <div class="wrap">
+    <div class="tech-head">
+      <div style="display:grid;gap:var(--s-2)">
+        <p class="kicker rv"><b>03</b>Tecnología</p>
+        <h2 class="rv" style="--d:.06s">El diagnóstico completo, <em>acá mismo</em>.</h2>
+      </div>
+      <p class="lead rv" style="--d:.12s">No hace falta sacar turno en otro lado para hacerte los estudios: los equipos están en el consultorio.</p>
+    </div>
+    <div class="gallery">
+      <figure class="rv">
+        <div class="photo"><img src="https://images.pexels.com/photos/5765827/pexels-photo-5765827.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Paciente frente a un equipo de diagnóstico por imagen" loading="lazy"></div>
+        <figcaption><b>Diagnóstico por imagen</b>OCT y retinografía para ver lo que no se ve a simple vista.</figcaption>
+      </figure>
+      <figure class="rv" style="--d:.1s">
+        <div class="photo"><img src="https://images.pexels.com/photos/5201878/pexels-photo-5201878.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Foróptero" loading="lazy"></div>
+        <figcaption><b>Graduación exacta</b>Refracción con foróptero.</figcaption>
+      </figure>
+      <figure class="rv" style="--d:.18s">
+        <div class="photo"><img src="https://images.pexels.com/photos/5715885/pexels-photo-5715885.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Montura de prueba con lentes" loading="lazy"></div>
+        <figcaption><b>Probás antes de llevarte</b>Montura de prueba para confirmar la corrección.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="booking" id="turnos">
+  <div class="wrap">
+    <div class="book-head">
+      <div>
+        <p class="kicker rv"><b>04</b>Turnos online</p>
+        <h2 class="rv" style="--d:.06s">Elegí tu horario, <em>nosotros lo guardamos</em>.</h2>
+      </div>
+      <ol class="how rv" style="--d:.12s">
+        <li><span><b>Elegí estudio, día y hora.</b> Solo ves horarios donde el estudio entra completo.</span></li>
+        <li><span><b>Tenés 5 minutos para completar tus datos.</b> Mientras tanto, nadie más puede tomar ese horario.</span></li>
+        <li><span><b>Te llega un WhatsApp 24 h antes</b> para confirmar o cancelar.</span></li>
+      </ol>
+    </div>
+    <div class="book">
+      <div class="panel rv">
+        <div class="bstep"><h3><i>1</i>Estudio</h3><div class="opts" id="tipos" role="group" aria-label="Tipo de turno"></div></div>
+        <div class="bstep"><h3><i>2</i>Día</h3><div class="days" id="dias" role="group" aria-label="Día"></div></div>
+        <div class="bstep"><h3><i>3</i>Horario</h3><div id="slots"></div></div>
+      </div>
+      <aside class="summary">
+        <div class="panel rv" style="--d:.08s" id="sumPanel">
+          <div id="sumMain">
+            <h3>Tu turno</h3>
+            <div class="sum-row"><span>Estudio</span><b id="sTipo">—</b></div>
+            <div class="sum-row"><span>Atiende</span><b id="sProf">—</b></div>
+            <div class="sum-row"><span>Día</span><b id="sDia">—</b></div>
+            <div class="sum-row"><span>Horario</span><b id="sHora">—</b></div>
+            <div class="hold" id="hold" role="status"><span>Reservado por</span><span class="bar"><i id="holdBar"></i></span><b id="holdT">5:00</b></div>
+            <div class="reveal-rows" id="formWrap"><div>
+              <form class="form" id="form" novalidate>
+                <div class="field"><label for="fNombre">Nombre y apellido</label><input id="fNombre" autocomplete="name" required><div class="err">Ingresá nombre y apellido.</div></div>
+                <div class="field"><label for="fDni">DNI</label><input id="fDni" inputmode="numeric" maxlength="8" required><div class="err">El DNI tiene 7 u 8 números.</div></div>
+                <div class="field"><label for="fTel">WhatsApp</label><input id="fTel" type="tel" inputmode="tel" autocomplete="tel" placeholder="381 555 1234" required><div class="err">Lo necesitamos para el recordatorio.</div></div>
+                <div class="field"><label for="fCob">Cobertura</label><select id="fCob"><option>Particular</option><option>Obra social</option><option>Prepaga</option></select></div>
+                <button class="btn btn-primary" type="submit">Confirmar turno</button>
+              </form>
+            </div></div>
+            <div class="msg error" id="msg" role="alert"></div>
+            <p class="fine" id="fine">Elegí estudio, día y horario.</p>
+          </div>
+          <div class="success" id="success" role="status">
+            <div class="check"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--teal)"><path d="M5 12.5 10 17 19 7.5"/></svg></div>
+            <h3>Listo, te esperamos.</h3>
+            <p id="okText"></p>
+            <button class="btn btn-line" type="button" id="again">Sacar otro turno</button>
+          </div>
+        </div>
+        <details class="dev rv" style="--d:.14s">
+          <summary>Qué pasa en la base de datos <em>Demo técnica</em></summary>
+          <div class="dev-body">
+            <label class="toggle"><input type="checkbox" id="race"> Simular que otra persona elige el mismo horario al mismo tiempo</label>
+            <div class="log" id="log" aria-live="polite"><span class="dim">-- Las consultas SQL aparecen acá mientras reservás.</span></div>
+          </div>
+        </details>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="preguntas">
+  <div class="wrap split">
+    <div class="split-head">
+      <p class="kicker rv"><b>05</b>Preguntas</p>
+      <h2 class="rv" style="--d:.06s">Antes de <em>venir</em>.</h2>
+    </div>
+    <div class="rv" id="faqList">
+      <div class="qa"><button type="button" aria-expanded="false">¿Atienden con obra social?<span class="pm" aria-hidden="true"></span></button><div class="ans"><div><p>Sí: obras sociales provinciales y nacionales, prepagas y particular. Si tenés dudas sobre tu cobertura para un estudio, escribinos antes del turno.</p></div></div></div>
+      <div class="qa"><button type="button" aria-expanded="false">¿Me van a dilatar las pupilas?<span class="pm" aria-hidden="true"></span></button><div class="ans"><div><p>Depende del control. Si la doctora necesita ver el fondo de ojo en detalle, las gotas dilatan entre 3 y 4 horas. Vení acompañado y no manejes después.</p></div></div></div>
+      <div class="qa"><button type="button" aria-expanded="false">¿Qué tengo que traer?<span class="pm" aria-hidden="true"></span></button><div class="ans"><div><p>DNI, credencial de tu cobertura, la orden si es un estudio, tus anteojos o lentes actuales y estudios previos si los tenés.</p></div></div></div>
+      <div class="qa"><button type="button" aria-expanded="false">¿Cómo cancelo o cambio un turno?<span class="pm" aria-hidden="true"></span></button><div class="ans"><div><p>Respondé “cancelar” al recordatorio de WhatsApp. El horario se libera al instante para otro paciente.</p></div></div></div>
+      <div class="qa"><button type="button" aria-expanded="false">¿Desde qué edad atienden a niños?<span class="pm" aria-hidden="true"></span></button><div class="ans"><div><p>Desde los 3 años. Recomendamos un control antes de empezar la escuela, o antes si entrecierra los ojos o se acerca mucho a las pantallas.</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contacto">
+  <div class="wrap contact-grid">
+    <div>
+      <h2 class="rv">¿Dudas antes del turno? <em>Escribinos.</em></h2>
+      <p class="lead rv" style="--d:.08s">Te respondemos por WhatsApp en horario de atención.</p>
+      <div class="ctas rv" style="--d:.14s">
+        <a class="btn btn-primary" href="#turnos">Sacar turno <span class="arr" aria-hidden="true">→</span></a>
+        <a class="btn btn-line" href="#" id="waBtn" onclick="return false">WhatsApp (demo)</a>
+      </div>
+    </div>
+    <div class="info rv" style="--d:.1s">
+      <div><span>Dirección</span><i data-cfg="direccion" style="font-style:normal">Av. Ejemplo 1234, 2.º piso, San Miguel de Tucumán</i></div>
+      <div><span>Horarios</span><i data-cfg="horarios_texto" style="font-style:normal">Lunes a viernes de 9 a 13 y de 16 a 20 · Sábados de 9 a 12</i></div>
+      <div><span>Teléfono</span><i data-cfg="telefono" style="font-style:normal">(0381) 000-0000</i></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="yr"></span> <span data-cfg="nombre">Dra. Camila Ortiz</span><span id="demoNote"> · Sitio de demostración con datos ficticios.</span></span>
+    <span>Fotos: <a href="https://www.pexels.com" target="_blank" rel="noopener">Pexels</a> · Desarrollo: <a href="https://instagram.com/sync.tuc" target="_blank" rel="noopener">Sync Solutions</a></span>
+  </div>
+</footer>
+
+<div class="mcta" id="mcta"><a href="#turnos" class="btn btn-primary">Sacar turno online <span class="arr" aria-hidden="true">→</span></a></div>
+
+<script>
+(() => {
+  requestAnimationFrame(() => document.getElementById('top').classList.add('loaded-page'));
+  document.querySelectorAll('.photo img').forEach(img => {
+    const done = () => img.classList.add('loaded');
+    if (img.complete && img.naturalWidth) done(); else img.addEventListener('load', done);
+    img.addEventListener('error', () => img.remove());
+  });
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold: .12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+  const nav = document.getElementById('nav'), mcta = document.getElementById('mcta'), turnosSec = document.getElementById('turnos');
+  const onScroll = () => {
+    nav.classList.toggle('scrolled', scrollY > 8);
+    const r = turnosSec.getBoundingClientRect();
+    mcta.classList.toggle('on', scrollY > 500 && !(r.top < innerHeight && r.bottom > 0));
+  };
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  document.querySelectorAll('.qa button').forEach(b => b.addEventListener('click', () => {
+    const qa = b.parentElement, open = qa.dataset.open === 'true';
+    qa.dataset.open = String(!open); b.setAttribute('aria-expanded', String(!open));
+  }));
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  /* =====================================================================
+     Turnero. Dos backends con la misma interfaz:
+       · live: la API real (/api/public/*), cuando la landing la sirve el servidor
+       · demo: simulación en memoria, cuando se abre el HTML suelto
+     ===================================================================== */
+  const STEP = 10;
+  const ACTIVOS = ['pendiente', 'reservado', 'confirmado', 'bloqueo'];
+  const FRANJAS = [[540, 780], [960, 1200]];
+  const HORARIOS = { 1: FRANJAS, 2: FRANJAS, 3: FRANJAS, 4: FRANJAS, 5: FRANJAS, 6: [[540, 720]] };
+  const DESC = { 1: 'Control general', 2: 'Operados', 3: 'Retina y nervio', 4: 'Visión periférica', 5: 'Córnea' };
+
+  const pad = n => String(n).padStart(2, '0');
+  // Todo en hora del consultorio (Tucumán, UTC-3 fijo, sin horario de verano),
+  // sin importar la zona horaria del navegador del paciente
+  const TZ = 'America/Argentina/Tucuman', OFFSET = 3 * 36e5;
+  const loc = d => new Date(+d - OFFSET);   // campos UTC de loc(d) = hora de Tucumán
+  const keyOf = d => loc(d).toISOString().slice(0, 10);
+  const atMin = (d, m) => new Date(Date.parse(`${keyOf(d)}T00:00:00-03:00`) + m * 6e4);
+  const hhmm = d => loc(d).toISOString().slice(11, 16);
+  const horaDe = d => loc(d).getUTCHours();
+  const dowDe = d => loc(d).getUTCDay();
+  const diaDe = d => loc(d).getUTCDate();
+  const iso = d => `'${keyOf(d)} ${hhmm(d)}-03'`;
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+  function proximosDias(n) {
+    const out = []; let d = atMin(new Date(), 0);
+    while (out.length < n) { if (HORARIOS[dowDe(d)]) out.push(d); d = new Date(+d + 864e5); }
+    return out;
+  }
+
+  /* ---------- Backend DEMO (en memoria, espejo del schema) ---------- */
+  function crearDemo() {
+    const tipos = [
+      { id: 1, nombre: 'Consulta', dur: 20, recurso: 1, prof: 1, profesional: 'Dra. Camila Ortiz' },
+      { id: 2, nombre: 'Control postop', dur: 15, recurso: 1, prof: 1, profesional: 'Dra. Camila Ortiz' },
+      { id: 3, nombre: 'OCT', dur: 30, recurso: 2, prof: 2, profesional: 'Técnico en estudios' },
+      { id: 4, nombre: 'Campo visual', dur: 30, recurso: 3, prof: 2, profesional: 'Técnico en estudios' },
+      { id: 5, nombre: 'Topografía corneal', dur: 25, recurso: 4, prof: 2, profesional: 'Técnico en estudios' },
+    ];
+    const turnos = []; let nextId = 1000; const seeded = new Set();
+    const conflicto = (inicio, fin, tipo, ignorar) => turnos.find(t => t !== ignorar && ACTIVOS.includes(t.estado) &&
+      t.inicio < fin && inicio < t.fin && ((t.prof === tipo.prof && !t.sobreturno) || (t.recurso && t.recurso === tipo.recurso)));
+    const insertar = t => {
+      const c = conflicto(t.inicio, t.fin, t.tipo);
+      if (c) return { error: c.estado === 'bloqueo' ? 'bloqueo' : (c.prof === t.tipo.prof) ? 'sin_choque_profesional' : 'sin_choque_recurso' };
+      const row = { id: nextId++, prof: t.tipo.prof, recurso: t.tipo.recurso, ...t }; turnos.push(row); return { row };
+    };
+    const rng = seed => () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+    function seedDay(d) {
+      const k = keyOf(d); if (seeded.has(k)) return; seeded.add(k);
+      const fr = HORARIOS[dowDe(d)]; if (!fr) return;
+      const r = rng(+k.replace(/-/g, ''));
+      if (dowDe(d) === 5 && r() < .6) turnos.push({ id: nextId++, prof: 1, recurso: null, inicio: atMin(d, 960), fin: atMin(d, 1200), estado: 'bloqueo', motivo: 'Cirugías programadas' });
+      [1, 2].forEach(p => {
+        const ts = tipos.filter(t => t.prof === p);
+        fr.forEach(([a, b]) => {
+          let m = a;
+          while (m + 15 <= b) {
+            if (r() < .55) {
+              const tipo = ts[Math.floor(r() * ts.length)], ini = atMin(d, m), fin = atMin(d, m + tipo.dur);
+              if (m + tipo.dur <= b && !conflicto(ini, fin, tipo)) { turnos.push({ id: nextId++, prof: p, recurso: tipo.recurso, tipo, inicio: ini, fin, estado: 'reservado' }); m += tipo.dur; continue; }
+            }
+            m += STEP * (1 + Math.floor(r() * 2));
+          }
+        });
+      });
+    }
+    return {
+      modo: 'demo', tipos,
+      async init() {}, async cargar() {},
+      slots(d, tipo, hold) {
+        seedDay(d);
+        const fr = HORARIOS[dowDe(d)] || [], limite = new Date(Date.now() + 36e5), out = [];
+        fr.forEach(([a, b]) => { for (let m = a; m + tipo.dur <= b; m += STEP) {
+          const ini = atMin(d, m), fin = atMin(d, m + tipo.dur);
+          if (ini > limite && !conflicto(ini, fin, tipo, hold?.row)) out.push(ini);
+        } });
+        return out;
+      },
+      bloqueo(d, tipo) { seedDay(d); return tipo.prof === 1 ? turnos.find(t => t.estado === 'bloqueo' && keyOf(t.inicio) === keyOf(d)) : null; },
+      async retener(tipo, ini, carrera) {
+        const fin = new Date(+ini + tipo.dur * 6e4), pasos = [];
+        if (carrera) {
+          const o = insertar({ tipo, inicio: ini, fin, estado: 'pendiente' });
+          pasos.push({ quien: 'otra persona', ok: !!o.row, res: o.row ? `201 · turno #${o.row.id} retenido` : '409' });
+        }
+        const r = insertar({ tipo, inicio: ini, fin, estado: 'pendiente' });
+        pasos.push({ quien: 'vos', ok: !!r.row, res: r.row ? `201 · turno #${r.row.id} retenido 5 min` : `409 · ERROR 23P01 "${r.error}"` });
+        return r.row ? { ok: true, pasos, hold: { row: r.row, id: r.row.id, expira: Date.now() + 5 * 6e4 } } : { ok: false, pasos, codigo: r.error };
+      },
+      async liberar(hold) { hold.row.estado = 'cancelado'; },
+      async confirmar(hold) { hold.row.estado = 'reservado'; return { ok: true }; },
+    };
+  }
+
+  /* ---------- Backend LIVE (API real) ---------- */
+  function crearLive() {
+    const cache = new Map(), bloqueos = new Map();
+    const post = (url, body) => fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+      .then(async r => ({ status: r.status, body: await r.json().catch(() => ({})) }));
+    const be = {
+      modo: 'live', tipos: [],
+      async init() {
+        const r = await fetch('/api/public/tipos', { headers: { Accept: 'application/json' } });
+        if (!r.ok) throw new Error('sin api');
+        be.tipos = (await r.json()).map(t => ({ id: t.id, nombre: t.nombre, descripcion: t.descripcion, dur: t.duracion_min, recurso: t.recurso_id, prof: t.profesional_id, profesional: t.profesional }));
+        be.consultorio = await fetch('/api/public/consultorio').then(x => x.ok ? x.json() : null).catch(() => null);
+        be.demo = await fetch('/api/salud').then(x => x.json()).then(x => !!x.demo).catch(() => true);
+      },
+      async cargar(tipo) {
+        const d = await fetch(`/api/public/disponibilidad?tipo=${tipo.id}&dias=21`).then(r => r.json());
+        const m = new Map(); for (const x of d.dias) m.set(x.fecha, x.slots.map(s => new Date(s)));
+        cache.set(tipo.id, m); bloqueos.set(tipo.id, d.bloqueos || []);
+      },
+      slots(d, tipo, hold) {
+        const lista = (cache.get(tipo.id)?.get(keyOf(d)) || []).slice();
+        if (hold && keyOf(hold.inicio) === keyOf(d) && !lista.some(s => +s === +hold.inicio)) { lista.push(hold.inicio); lista.sort((a, b) => a - b); }
+        return lista;
+      },
+      bloqueo(d, tipo) { return (bloqueos.get(tipo.id) || []).find(b => keyOf(new Date(b.inicio)) === keyOf(d)) || null; },
+      async retener(tipo, ini, carrera) {
+        const body = { tipo_turno_id: tipo.id, inicio: ini.toISOString() };
+        // En modo carrera mandamos dos pedidos reales a la vez: la base decide quién gana
+        const pedidos = carrera ? [post('/api/public/retenciones', body), post('/api/public/retenciones', body)] : [post('/api/public/retenciones', body)];
+        const res = await Promise.all(pedidos);
+        const pasos = res.map((r, i) => ({ quien: carrera ? (i === 0 ? 'otra persona' : 'vos') : 'vos', ok: r.status === 201,
+          res: r.status === 201 ? `201 · turno #${r.body.id} retenido` : `${r.status} · ${r.body.codigo ? `23P01 "${r.body.codigo}"` : r.body.error}` }));
+        const mio = res[res.length - 1];
+        if (mio.status === 201) return { ok: true, pasos, hold: { id: mio.body.id, token: mio.body.token, inicio: ini, expira: new Date(mio.body.expira_at).getTime() } };
+        await be.cargar(tipo);
+        return { ok: false, pasos, codigo: mio.body.codigo, mensaje: mio.body.error };
+      },
+      async liberar(hold) { await fetch(`/api/public/retenciones/${hold.token}`, { method: 'DELETE' }).catch(() => {}); },
+      async confirmar(hold, datos) {
+        const r = await post(`/api/public/retenciones/${hold.token}/confirmar`, datos);
+        if (r.status === 200) return { ok: true, link: r.body.link_gestion };
+        return { ok: false, mensaje: r.body.detalles?.map(d => d.mensaje).join(' · ') || r.body.error, vencido: r.status === 410 };
+      },
+    };
+    return be;
+  }
+
+  /* ---------- Log de lo que pasa en la base ---------- */
+  const logEl = document.getElementById('log');
+  function log(sql, res, cls) {
+    if (logEl.querySelector('.dim:only-child')) logEl.innerHTML = '';
+    const s = document.createElement('div');
+    s.innerHTML = `<span>${esc(sql)}</span>\n<span class="${cls}">${esc(res)}</span>\n`;
+    logEl.appendChild(s); logEl.scrollTop = logEl.scrollHeight;
+  }
+  const sqlInsert = (t, ini) => `INSERT INTO turnos (profesional_id, tipo_turno_id, inicio, estado, expira_at, origen)\nVALUES (${t.prof}, ${t.id}, ${iso(ini)}, 'pendiente', now() + interval '5 min', 'web');\n-- el trigger calcula fin = inicio + ${t.dur} min y el equipo`;
+
+  /* ---------- Estado y render ---------- */
+  let BE = crearDemo();
+  const state = { tipo: null, dia: null, slot: null, hold: null, timer: null };
+  const $ = id => document.getElementById(id);
+  const fmtDia = d => d.toLocaleDateString('es-AR', { timeZone: TZ, weekday: 'long', day: 'numeric', month: 'long' });
+  const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+  const libres = (d, t) => BE.slots(d, t, state.hold);
+
+  function renderTipos() {
+    $('tipos').innerHTML = BE.tipos.map(t => `<button type="button" class="opt" data-id="${t.id}" aria-pressed="${state.tipo?.id === t.id}"><b>${esc(t.nombre)}</b><span>${DESC[t.id] ?? ''}${DESC[t.id] ? ' · ' : ''}${t.dur} min</span></button>`).join('');
+  }
+  function renderDias() {
+    const dias = proximosDias(12);
+    if (!state.dia) state.dia = dias[0];
+    $('dias').innerHTML = dias.map(d => {
+      const n = state.tipo ? libres(d, state.tipo).length : null;
+      const info = n === null ? '' : n ? `<i>${n} ${n === 1 ? 'libre' : 'libres'}</i>` : '<i class="full">Completo</i>';
+      return `<button type="button" class="day" data-k="${keyOf(d)}" aria-pressed="${keyOf(d) === keyOf(state.dia)}"><small>${d.toLocaleDateString('es-AR', { timeZone: TZ, weekday: 'short' }).replace('.', '')}</small><b>${diaDe(d)}</b>${info}</button>`;
+    }).join('');
+  }
+  function renderSlots() {
+    const el = $('slots');
+    if (!state.tipo) { el.innerHTML = '<div class="empty">Elegí un estudio y te mostramos los horarios donde entra completo.</div>'; return; }
+    const ls = libres(state.dia, state.tipo), bl = BE.bloqueo(state.dia, state.tipo);
+    let html = bl ? `<div class="notice">Parte de este día está reservada para ${esc(bl.motivo.toLowerCase())}.</div>` : '';
+    if (!ls.length) { el.innerHTML = html + '<div class="empty">No quedan horarios este día. Probá con otro.</div>'; return; }
+    const g = { 'Mañana': ls.filter(s => horaDe(s) < 14), 'Tarde': ls.filter(s => horaDe(s) >= 14) };
+    html += Object.entries(g).filter(([, v]) => v.length).map(([k, v]) =>
+      `<div class="slot-group"><p>${k}</p><div class="slots">${v.map(s => `<button type="button" class="slot" data-t="${+s}" aria-pressed="${!!state.slot && +state.slot === +s}">${hhmm(s)}</button>`).join('')}</div></div>`).join('');
+    el.innerHTML = html;
+  }
+  function renderSummary() {
+    $('sTipo').textContent = state.tipo ? state.tipo.nombre : '—';
+    $('sProf').textContent = state.tipo ? state.tipo.profesional : '—';
+    $('sDia').textContent = state.slot ? cap(fmtDia(state.slot)) : (state.dia && state.tipo ? cap(fmtDia(state.dia)) : '—');
+    $('sHora').textContent = state.slot ? `${hhmm(state.slot)} a ${hhmm(new Date(+state.slot + state.tipo.dur * 6e4))}` : '—';
+    const on = !!state.hold;
+    $('formWrap').classList.toggle('on', on); $('hold').classList.toggle('on', on);
+    $('fine').textContent = on ? 'Usamos tus datos solo para el turno y el recordatorio.' : 'Elegí estudio, día y horario.';
+  }
+  function renderAll() { renderTipos(); renderDias(); renderSlots(); renderSummary(); }
+  function msg(text) { const m = $('msg'); m.textContent = text || ''; m.classList.toggle('on', !!text); }
+
+  async function soltarHold(motivo) {
+    if (!state.hold) return;
+    clearInterval(state.timer);
+    const h = state.hold; state.hold = null;
+    await BE.liberar(h);
+    log(`${BE.modo === 'live' ? `DELETE /api/public/retenciones/${h.token.slice(0, 8)}…\n` : ''}UPDATE turnos SET estado = 'cancelado' WHERE id = ${h.id}; -- ${motivo}`, 'OK · horario liberado', 'ok');
+  }
+  function iniciarHold(hold) {
+    state.hold = hold;
+    const total = (hold.expira - Date.now()) / 1000;
+    const tick = () => {
+      const s = Math.max(0, Math.round((hold.expira - Date.now()) / 1000));
+      $('holdT').textContent = `${Math.floor(s / 60)}:${pad(s % 60)}`;
+      $('holdBar').style.transform = `scaleX(${Math.max(0, s / total)})`;
+      if (s === 0) {
+        clearInterval(state.timer);
+        if (BE.modo === 'demo') hold.row.estado = 'cancelado';
+        log(`SELECT liberar_turnos_vencidos(); -- job cada minuto`, 'OK · 1 retención vencida liberada', 'ok');
+        state.hold = null; state.slot = null;
+        msg('Se venció el tiempo y el horario volvió a quedar libre. Elegí uno nuevo.');
+        refrescar();
+      }
+    };
+    tick(); state.timer = setInterval(tick, 1000);
+  }
+  async function refrescar() { if (state.tipo) await BE.cargar(state.tipo); renderDias(); renderSlots(); renderSummary(); }
+
+  async function elegirSlot(t) {
+    const ini = new Date(t), tipo = state.tipo;
+    msg(''); await soltarHold('cambió de horario');
+    const r = await BE.retener(tipo, ini, $('race').checked);
+    const titulo = BE.modo === 'live' ? `POST /api/public/retenciones${r.pasos.length > 1 ? '  ×2 en paralelo' : ''}\n` : 'BEGIN;\n';
+    log(titulo + sqlInsert(tipo, ini), r.pasos.map(p => `${p.quien}: ${p.res}`).join('\n'), r.ok ? 'ok' : 'bad');
+    if (!r.ok) {
+      state.slot = null;
+      msg(r.codigo === 'sin_choque_profesional' || r.codigo === 'sin_choque_recurso' || !r.mensaje
+        ? 'Alguien tomó ese horario hace un instante. Ya actualizamos la lista: elegí otro.' : r.mensaje);
+      renderDias(); renderSlots(); renderSummary();
+      return;
+    }
+    state.slot = ini;
+    iniciarHold({ inicio: ini, ...r.hold });
+    renderSlots(); renderSummary();
+    if (innerWidth < 1020) $('sumPanel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  async function elegirTipo(id, keepDay) {
+    await soltarHold('cambió de estudio'); msg('');
+    state.tipo = BE.tipos.find(t => t.id === id); state.slot = null;
+    await BE.cargar(state.tipo);
+    if (!keepDay && !libres(state.dia, state.tipo).length) {
+      const d = proximosDias(12).find(x => libres(x, state.tipo).length);
+      if (d) state.dia = d;
+    }
+    renderAll();
+  }
+
+  $('tipos').addEventListener('click', e => { const b = e.target.closest('.opt'); if (b) elegirTipo(+b.dataset.id); });
+  $('dias').addEventListener('click', async e => {
+    const b = e.target.closest('.day'); if (!b) return;
+    await soltarHold('cambió de día'); msg('');
+    state.dia = proximosDias(12).find(d => keyOf(d) === b.dataset.k); state.slot = null;
+    renderDias(); renderSlots(); renderSummary();
+  });
+  $('slots').addEventListener('click', e => { const b = e.target.closest('.slot'); if (b) elegirSlot(+b.dataset.t); });
+  // Delegado: en modo live la lista de estudios se vuelve a dibujar con lo que hay en la base
+  $('svcList').addEventListener('click', e => {
+    const b = e.target.closest('.go'); if (!b) return;
+    elegirTipo(+b.dataset.tipo); turnosSec.scrollIntoView({ behavior: 'smooth' });
+  });
+  $('heroSlots').addEventListener('click', async e => {
+    const b = e.target.closest('button'); if (!b) return;
+    const t = +b.dataset.t, d = atMin(new Date(t), 0);
+    state.dia = d; await elegirTipo(tipoHero().id, true);
+    turnosSec.scrollIntoView({ behavior: 'smooth' });
+    elegirSlot(t);
+  });
+
+  $('form').addEventListener('submit', async e => {
+    e.preventDefault();
+    const checks = [
+      ['fNombre', v => v.trim().split(/\s+/).length >= 2],
+      ['fDni', v => /^\d{7,8}$/.test(v.trim())],
+      ['fTel', v => v.replace(/\D/g, '').length >= 10],
+    ];
+    let ok = true;
+    checks.forEach(([id, fn]) => { const good = fn($(id).value); $(id).parentElement.classList.toggle('bad', !good); if (!good && ok) { $(id).focus(); ok = false; } });
+    if (!ok || !state.hold) return;
+    const btn = e.submitter; if (btn) btn.disabled = true;
+    const r = await BE.confirmar(state.hold, { nombre: $('fNombre').value.trim(), dni: $('fDni').value.trim(), telefono: $('fTel').value.trim(), cobertura: $('fCob').value });
+    if (btn) btn.disabled = false;
+    if (!r.ok) {
+      msg(r.mensaje);
+      if (r.vencido) { clearInterval(state.timer); state.hold = null; state.slot = null; refrescar(); }
+      return;
+    }
+    clearInterval(state.timer);
+    log(`${BE.modo === 'live' ? `POST /api/public/retenciones/${state.hold.token.slice(0, 8)}…/confirmar\n` : ''}UPDATE turnos SET paciente_id = :paciente, estado = 'reservado', expira_at = NULL WHERE id = ${state.hold.id};\nINSERT INTO recordatorios (turno_id, programado_para) VALUES (${state.hold.id}, ${iso(new Date(+state.slot - 864e5))});`, 'OK · turno confirmado, recordatorio programado', 'ok');
+    const nombre = $('fNombre').value.trim().split(/\s+/)[0];
+    $('okText').innerHTML = `${esc(nombre)}, tu turno de <b>${esc(state.tipo.nombre.toLowerCase())}</b> es el <b>${fmtDia(state.slot)}</b> a las <b>${hhmm(state.slot)}</b>. Te escribimos por WhatsApp un día antes.`
+      + (r.link ? `<br><a href="${esc(r.link)}">Guardá este link</a> para confirmar, cambiar o cancelar tu turno.` : '');
+    state.hold = null;
+    $('sumMain').style.display = 'none'; $('success').classList.add('on');
+    updateHero();
+  });
+  $('again').addEventListener('click', () => {
+    $('form').reset(); state.slot = null;
+    $('success').classList.remove('on'); $('sumMain').style.display = '';
+    refrescar();
+  });
+  // Si el paciente se va con un horario retenido, lo liberamos
+  addEventListener('pagehide', () => { if (state.hold?.token) navigator.sendBeacon(`/api/public/retenciones/${state.hold.token}/liberar`); });
+
+  async function updateHero() {
+    const tipo = tipoHero(), out = [];
+    if (!tipo) return;
+    await BE.cargar(tipo);
+    for (const d of proximosDias(12)) {
+      let perDay = 0, last = 0;
+      for (const s of BE.slots(d, tipo)) { if (s - last < 90 * 6e4) continue; out.push(s); last = +s; if (++perDay === 2 || out.length === 4) break; }
+      if (out.length === 4) break;
+    }
+    const man = new Date(Date.now() + 864e5);
+    const label = d => keyOf(d) === keyOf(new Date()) ? 'Hoy' : keyOf(d) === keyOf(man) ? 'Mañana' : cap(d.toLocaleDateString('es-AR', { timeZone: TZ, weekday: 'short', day: 'numeric' }).replace('.', ''));
+    $('heroSlots').innerHTML = out.map(s => `<button type="button" data-t="${+s}"><span>${label(s)}</span>${hhmm(s)}</button>`).join('');
+    $('nextSlot').textContent = out[0] ? `Próximo: ${label(out[0]).toLowerCase()}, ${hhmm(out[0])} h` : 'Consultá disponibilidad';
+  }
+
+  /** Estudio de los "próximos turnos" del inicio: el primero que se puede reservar. */
+  function tipoHero() { return BE.tipos[0]; }
+
+  const ROMANOS = ['i', 'ii', 'iii', 'iv', 'v', 'vi', 'vii', 'viii', 'ix', 'x', 'xi', 'xii'];
+  /** Datos del consultorio cargados en el panel (nombre, contacto, horarios). */
+  function aplicarConsultorio(c) {
+    if (!c) return;
+    const valores = { ...c, kicker: [c.especialidad, c.ciudad].filter(Boolean).join(' · ') };
+    document.querySelectorAll('[data-cfg]').forEach(el => {
+      const v = valores[el.dataset.cfg];
+      if (v) el.textContent = v; else if (el.closest('.info > div')) el.closest('.info > div').hidden = true;
+    });
+    document.title = `${c.nombre} · ${c.especialidad}`;
+    const wa = $('waBtn');
+    if (c.whatsapp) {
+      wa.textContent = 'Escribinos por WhatsApp'; wa.removeAttribute('onclick');
+      wa.href = `https://wa.me/${c.whatsapp.replace(/\D/g, '').replace(/^(?:54)?9?0?(\d{10})$/, '549$1')}`; wa.target = '_blank'; wa.rel = 'noopener';
+    } else wa.hidden = true;
+  }
+  /** La lista de estudios sale de la base: lo que se agrega en el panel aparece acá. */
+  function renderServicios() {
+    $('svcList').innerHTML = BE.tipos.map((t, i) => `<li class="svc rv in"><span class="num">${ROMANOS[i] ?? i + 1}.</span><h3>${esc(t.nombre)}</h3>`
+      + `<span class="dur">${t.dur} min</span>${t.descripcion ? `<p>${esc(t.descripcion)}</p>` : ''}`
+      + `<button type="button" class="go link" data-tipo="${t.id}">Reservar ${esc(t.nombre.toLowerCase())} →</button></li>`).join('');
+  }
+  /** Link del aviso de lista de espera: ?tipo=1&inicio=...#turnos deja el horario elegido. */
+  async function preseleccion() {
+    const p = new URLSearchParams(location.search), tipoId = +p.get('tipo'), inicio = p.get('inicio');
+    if (!tipoId || !BE.tipos.some(t => t.id === tipoId)) return;
+    const ini = inicio ? new Date(inicio) : null;
+    if (ini && !isNaN(+ini)) state.dia = atMin(ini, 0);
+    await elegirTipo(tipoId, !!ini);
+    turnosSec.scrollIntoView();
+    if (ini && !isNaN(+ini)) {
+      if (libres(state.dia, state.tipo).some(s => +s === +ini)) await elegirSlot(+ini);
+      else msg('Ese horario ya lo tomó otra persona. Te mostramos los que siguen libres.');
+    }
+  }
+
+  (async () => {
+    if (location.protocol.startsWith('http')) {
+      try { const live = crearLive(); await live.init(); BE = live; } catch { /* sin API: queda la demo */ }
+    }
+    document.querySelector('.dev summary em').textContent = BE.modo === 'live' ? 'API en vivo' : 'Demo técnica';
+    if (BE.modo === 'live') {
+      aplicarConsultorio(BE.consultorio); renderServicios();
+      if (!BE.demo) $('demoNote').hidden = true;
+    }
+    renderAll(); updateHero();
+    await preseleccion();
+  })();
+})();
+</script>
+</body>
+</html>
