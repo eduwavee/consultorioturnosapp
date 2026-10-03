@@ -41,8 +41,11 @@ export function crearApp() {
         imgSrc: ["'self'", 'data:', 'https://images.pexels.com'],
         connectSrc: ["'self'"],
         scriptSrcAttr: ["'unsafe-inline'"],
+        // Solo en producción (HTTPS): Safari la aplica también en localhost y pide todo por https://
+        upgradeInsecureRequests: config.isProd ? [] : null,
       },
     },
+    strictTransportSecurity: config.isProd,
   }));
   // Guardamos el cuerpo crudo: la firma de los webhooks de Meta se calcula sobre los bytes exactos
   app.use(express.json({ limit: '200kb', verify: (req, _res, buf) => { (req as any).rawBody = buf; } }));

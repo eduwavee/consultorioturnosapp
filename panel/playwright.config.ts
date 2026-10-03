@@ -21,7 +21,11 @@ export default defineConfig({
     timezoneId: 'America/Argentina/Tucuman',
     trace: 'retain-on-failure',
   },
-  projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
+  // Safari incluido: aplica reglas que Chrome no aplica en localhost (por ejemplo, upgrade-insecure-requests)
+  projects: [
+    { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
+    { name: 'webkit', use: { ...devices['Desktop Safari'] } },
+  ],
   webServer: {
     command: 'npx tsx scripts/migrate.ts --reset && npx tsx scripts/seed.ts && npx tsx src/server.ts',
     cwd: '../api',

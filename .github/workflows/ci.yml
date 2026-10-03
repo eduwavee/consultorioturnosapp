@@ -34,8 +34,8 @@ jobs:
         run: npm run build -w panel
       - name: Tests de integración (Postgres real)
         run: npm test
-      - name: Instalar Chromium para Playwright
-        run: npx playwright install --with-deps chromium
+      - name: Instalar Chromium y WebKit para Playwright
+        run: npx playwright install --with-deps chromium webkit
         working-directory: panel
       - name: Tests de punta a punta (landing + panel)
         run: npm run e2e

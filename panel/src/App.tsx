@@ -88,9 +88,9 @@ export function App() {
           <div className="me">
             <b>{user.nombre}</b>
             <span className="muted">{ROL_LABEL[user.rol]}</span>
-            <div style={{ display: 'grid', justifyItems: 'start', marginTop: 4 }}>
-              <button className="btn ghost sm" style={{ paddingLeft: 0 }} onClick={() => setCuenta(true)}>Mi contraseña</button>
-              <button className="btn ghost sm" style={{ paddingLeft: 0 }} onClick={salir}>Cerrar sesión</button>
+            <div className="cuenta">
+              <button className="btn ghost sm" onClick={() => setCuenta(true)}>Mi contraseña</button>
+              <button className="btn ghost sm" onClick={salir}>Cerrar sesión</button>
             </div>
           </div>
         </aside>

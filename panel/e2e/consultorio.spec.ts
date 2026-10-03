@@ -4,14 +4,18 @@ import { expect, test, type Page } from '@playwright/test';
 async function entrar(page: Page, rol: 'Secretaría' | 'Médica' | 'Administración') {
   await page.goto('/panel/');
   await page.getByRole('button', { name: new RegExp(`^${rol}`) }).click();
-  await expect(page.getByRole('heading', { name: 'Agenda', level: 1 })).toBeVisible();
+  // exact: el título del login también dice "agenda"
+  await expect(page.getByRole('heading', { name: 'Agenda', level: 1, exact: true })).toBeVisible();
 }
+
+/** Turnos que se pueden mover y todavía no se cobraron (los tests de otro navegador pueden haber cobrado algunos). */
+const LIBRE = '.tb[draggable="true"]:not(.cobrado)';
 
 /** Avanza la agenda hasta un día que tenga turnos que se puedan mover. */
 async function irADiaConTurnos(page: Page) {
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 6; i++) {
     await page.getByRole('button', { name: 'Día siguiente' }).click();
-    const hay = await page.locator('.tb[draggable="true"]').first().waitFor({ timeout: 3000 }).then(() => true, () => false);
+    const hay = await page.locator(LIBRE).first().waitFor({ timeout: 3000 }).then(() => true, () => false);
     if (hay) return;
   }
   throw new Error('No hay turnos en los próximos días');
@@ -53,10 +57,12 @@ test.describe('Paciente', () => {
   });
 
   test('los estudios y los datos de contacto salen de la configuración', async ({ page }) => {
+    const tipos = await (await page.request.get('/api/public/tipos')).json();
     await page.goto('/');
-    await expect(page.locator('#svcList .svc')).toHaveCount(5);
+    await expect(page.locator('#svcList .svc')).toHaveCount(tipos.length);
     await expect(page.locator('#svcList')).toContainText('Topografía corneal');
-    await expect(page.locator('.info')).toContainText('(0381) 000-0000');
+    const c = await (await page.request.get('/api/public/consultorio')).json();
+    await expect(page.locator('.info')).toContainText(c.telefono);
   });
 });
 
@@ -73,7 +79,7 @@ test.describe('Secretaría', () => {
   test('arrastrar un turno pide confirmación antes de moverlo', async ({ page }) => {
     await entrar(page, 'Secretaría');
     await irADiaConTurnos(page);
-    const turno = page.locator('.tb[draggable="true"]').first();
+    const turno = page.locator(LIBRE).first();
     const caja = (await turno.boundingBox())!;
     // Lo soltamos 40 minutos más abajo en la misma columna
     await turno.dragTo(page.locator('.agenda .col').first(), {
@@ -89,8 +95,10 @@ test.describe('Secretaría', () => {
 
   test('pone a un paciente en lista de espera y cobra el turno con el precio del estudio', async ({ page }) => {
     await entrar(page, 'Secretaría');
+    // Lista de espera vacía, así el paciente que elijamos no está anotado de antes
+    for (const e of await (await page.request.get('/api/lista-espera')).json()) await page.request.post(`/api/lista-espera/${e.id}/resolver`);
     await irADiaConTurnos(page);
-    await page.locator('.tb[draggable="true"]').first().click();
+    await page.locator(LIBRE).first().click();
     const detalle = page.getByRole('dialog');
     const paciente = (await detalle.getByRole('heading', { level: 2 }).textContent())!.trim();
 
