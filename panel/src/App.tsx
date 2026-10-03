@@ -2,6 +2,7 @@ import { createContext, useCallback, useContext, useEffect, useState } from 'rea
 import { api, type Catalogos, type Rol, type Usuario } from './api';
 import { Agenda } from './pages/Agenda';
 import { Auditoria } from './pages/Auditoria';
+import { InstalarApp } from './components/Instalar';
 import { Alerta, Modal } from './components/ui';
 import { Caja } from './pages/Caja';
 import { Configuracion } from './pages/Configuracion';
@@ -89,6 +90,7 @@ export function App() {
             <b>{user.nombre}</b>
             <span className="muted">{ROL_LABEL[user.rol]}</span>
             <div className="cuenta">
+              <InstalarApp />
               <button className="btn ghost sm" onClick={() => setCuenta(true)}>Mi contraseña</button>
               <button className="btn ghost sm" onClick={salir}>Cerrar sesión</button>
             </div>

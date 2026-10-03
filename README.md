@@ -60,6 +60,17 @@ Lo importante no se resuelve en la interfaz sino en la base de datos: dos person
 | **Reportes** | Turnos del mes, ausentismo, reservas online e ingresos. Prestaciones atendidas por obra social, con descarga en CSV listo para Excel. |
 | **Auditoría** | Quién hizo qué y cuándo, con el antes y el después. El contenido clínico se oculta incluso para el admin. También muestra quién abrió cada historia clínica. |
 
+### Cómo entra el personal
+
+El panel es una página aparte de la web pública, en `/panel` (o en una dirección propia, como `panel.tuconsultorio.com.ar`). Cada persona entra con su usuario y contraseña, y ve solo lo que corresponde a su rol. La sesión dura 7 días en ese dispositivo.
+
+| | |
+|---|---|
+| **Se instala como app** | Botón **"Instalar app"** en el ingreso y en el menú. En la compu de recepción y en el celular de la doctora queda un ícono con el nombre del consultorio, que abre el panel en su propia ventana. En Chrome, Edge y Android usa el instalador del navegador; en iPhone y en Safari de Mac muestra los pasos. |
+| **No aparece en Google** | El panel, la API y la página de gestión del turno llevan `noindex` y están excluidos en `robots.txt`. La landing sí se indexa. |
+| **Sin datos guardados en el dispositivo** | El service worker no guarda en caché la API ni las pantallas: sin conexión solo muestra un aviso para reintentar. |
+| **Link discreto** | "Acceso profesionales" en el pie de la web. |
+
 <p align="center">
   <img src="docs/turno-detalle.png" width="420" alt="Detalle de un turno con sus acciones">
   <img src="docs/lista-espera.png" width="420" alt="Lista de espera">
@@ -142,10 +153,11 @@ api/                    Express + TypeScript + pg + zod
   src/routes/           public · agenda · clinica · caja · admin · webhooks
   src/worker.ts         vencimientos, lista de espera y recordatorios
   scripts/              migrate · seed · backup · carrera
-  test/                 51 tests de integración contra Postgres real
+  test/                 53 tests de integración contra Postgres real
 panel/                  React + Vite + TypeScript
   src/pages/            agenda, pacientes, consulta, lista de espera, caja, reportes, auditoría, configuración
-  e2e/                  9 escenarios de punta a punta con Playwright
+  public/               íconos, manifest y service worker (app instalable)
+  e2e/                  escenarios de punta a punta con Playwright (Chrome y Safari)
 web/landing/            landing con turnero (index.html) y gestión del turno (turno.html), sin frameworks
 docs/                   capturas para este README
 .github/workflows/      CI (typecheck, build, tests y e2e) · cron que despierta el worker
@@ -189,20 +201,20 @@ curl -X POST localhost:3000/api/webhooks/whatsapp -H 'Content-Type: application/
 ## Tests
 
 ```bash
-npm test                          # 51 tests de integración (API + base real)
-npx playwright install chromium   # una sola vez
-npm run e2e                       # 9 escenarios en un navegador real
+npm test                                 # 53 tests de integración (API + base real)
+npx playwright install chromium webkit   # una sola vez
+npm run e2e                              # escenarios en Chrome y en Safari
 ```
 
 Los de integración corren contra la base `consultorio_test`, que se recrea en cada corrida. Cubren la reserva y las 50 reservas simultáneas, los choques por equipo, las retenciones vencidas, el horario de atención, los roles, la historia clínica y su auditoría, las recetas, la máquina de estados, los bloqueos, el webhook de Meta (firma y verificación), la caja, la autogestión del paciente, la lista de espera, la configuración, los reportes y el cron.
 
-Los de punta a punta manejan la landing y el panel como lo haría una persona: reservar y gestionar el turno con el link, la vista semanal, arrastrar un turno, la lista de espera y el cobro, la receta, la configuración y los reportes.
+Los de punta a punta manejan la landing y el panel como lo haría una persona: reservar y gestionar el turno con el link, la vista semanal, arrastrar un turno, la lista de espera y el cobro, la receta, la configuración, los reportes y el acceso del personal (incluido "Instalar app" en Safari).
 
-CI (GitHub Actions) corre todo en cada push: typecheck, build, tests de integración contra Postgres y Playwright.
+CI (GitHub Actions) corre todo en cada push: typecheck, build, tests de integración contra Postgres y Playwright en Chrome y en Safari (WebKit).
 
 ## Antes de usarlo con pacientes reales ✅
 
-1. **Usuarios:** sacá `SEED_DEMO` y creá los usuarios reales en **Configuración → Usuarios**. Cada uno cambia su contraseña desde "Mi contraseña".
+1. **Usuarios:** sacá `SEED_DEMO` y creá los usuarios reales en **Configuración → Usuarios**. Cada uno cambia su contraseña desde "Mi contraseña" y puede instalar el panel en su dispositivo con "Instalar app". Si querés, apuntá un subdominio (por ejemplo `panel.tuconsultorio.com.ar`) a `/panel`.
 2. **Datos del consultorio:** completá nombre, dirección, teléfono, WhatsApp y horarios en **Configuración → Consultorio**, y los estudios con sus precios. La presentación del profesional, las fotos y las preguntas frecuentes de la landing están en `web/landing/index.html`.
 3. **WhatsApp:** creá la app en Meta, aprobá las plantillas de recordatorio y de lista de espera (cuerpo con 4 variables: nombre, estudio, fecha y hora, link) y cargá las variables de abajo. En Meta, el webhook va a `https://tu-dominio/api/webhooks/whatsapp` con tu `WHATSAPP_VERIFY_TOKEN`.
 4. **Worker siempre despierto:** un plan que no duerma el servidor, o el workflow `despertar.yml` con los secretos `SITE_URL` y `CRON_SECRET` cargados en GitHub. Llama a `POST /api/interno/ciclo` cada 10 minutos.

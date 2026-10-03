@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { api } from '../api';
+import { InstalarApp } from '../components/Instalar';
 import { Alerta } from '../components/ui';
 
 const DEMO = [
@@ -38,6 +39,7 @@ export function Login({ onLogin }: { onLogin: () => void }) {
         <div className="field"><label htmlFor="pw">Contraseña</label><input id="pw" className="input" type="password" autoComplete="current-password" value={password} onChange={e => setPassword(e.target.value)} required /></div>
         <Alerta error={error} />
         <button className="btn primary" disabled={cargando}>{cargando ? 'Ingresando…' : 'Ingresar'}</button>
+        <div style={{ justifySelf: 'center' }}><InstalarApp /></div>
         {demo && <div className="demo">
           <p className="muted" style={{ fontSize: 13 }}>Usuarios de demo (contraseña demo1234):</p>
           {DEMO.map(d => (

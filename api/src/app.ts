@@ -9,6 +9,7 @@ import helmet from 'helmet';
 import { z } from 'zod';
 import { cambiarPassword, loadUser, login, logout, requireAuth, setSessionCookie } from './lib/auth.js';
 import { config } from './lib/config.js';
+import { q } from './lib/db.js';
 import { errorHandler, HttpError } from './lib/errors.js';
 import { adminRouter } from './routes/admin.js';
 import { agendaRouter } from './routes/agenda.js';
@@ -48,6 +49,8 @@ export function crearApp() {
     strictTransportSecurity: config.isProd,
   }));
   // Guardamos el cuerpo crudo: la firma de los webhooks de Meta se calcula sobre los bytes exactos
+  // Lo interno no se indexa: panel, API y la página de gestión del turno (lleva un token en la URL)
+  app.use(['/panel', '/api', '/turno'], (_req, res, next) => { res.setHeader('X-Robots-Tag', 'noindex, nofollow'); next(); });
   app.use(express.json({ limit: '200kb', verify: (req, _res, buf) => { (req as any).rawBody = buf; } }));
   app.use(cookieParser());
   app.use(loadUser);
@@ -107,6 +110,17 @@ export function crearApp() {
   app.use(express.static(path.join(root, 'web', 'landing'), { extensions: ['html'] }));
   const panel = path.join(root, 'panel', 'dist');
   if (fs.existsSync(panel)) {
+    // La app instalada lleva el nombre del consultorio cargado en Configuración
+    app.get('/panel/manifest.webmanifest', async (_req, res, next) => {
+      try {
+        const base = JSON.parse(fs.readFileSync(path.join(panel, 'manifest.webmanifest'), 'utf8'));
+        const [c] = await q<{ marca: string; especialidad: string }>('SELECT marca, especialidad FROM consultorio');
+        if (c) Object.assign(base, { name: `${c.marca} · Panel`, short_name: c.marca.slice(0, 15), description: `Panel del consultorio de ${c.especialidad.toLowerCase()}: agenda, pacientes, historia clínica y caja.` });
+        res.type('application/manifest+json').set('Cache-Control', 'no-cache').send(JSON.stringify(base));
+      } catch (e) { next(e); }
+    });
+    // El service worker se revisa siempre, así las actualizaciones llegan enseguida
+    app.get('/panel/sw.js', (_req, res) => res.set('Cache-Control', 'no-cache').sendFile(path.join(panel, 'sw.js')));
     app.use('/panel', express.static(panel));
     app.get(/^\/panel(\/.*)?$/, (_req, res) => res.sendFile(path.join(panel, 'index.html')));
   }

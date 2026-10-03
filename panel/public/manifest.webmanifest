@@ -1,0 +1,16 @@
+{
+  "name": "Panel del consultorio",
+  "short_name": "Consultorio",
+  "description": "Agenda, pacientes, historia clínica y caja del consultorio.",
+  "lang": "es-AR",
+  "start_url": "/panel/",
+  "scope": "/panel/",
+  "display": "standalone",
+  "background_color": "#F4F9F8",
+  "theme_color": "#0E7C7B",
+  "icons": [
+    { "src": "/panel/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/panel/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/panel/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

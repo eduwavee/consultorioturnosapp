@@ -1,4 +1,7 @@
 import crypto from 'node:crypto';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import request from 'supertest';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { crearApp } from '../src/app.js';
@@ -271,5 +274,28 @@ describe('Cron externo', () => {
     await request(app).post('/api/interno/ciclo').set('x-cron-secret', 'otro-secreto').expect(401);
     const r = await request(app).post('/api/interno/ciclo').set('x-cron-secret', 'cron-test').expect(200);
     expect(r.body).toHaveProperty('liberados');
+  });
+});
+
+describe('Acceso al panel', () => {
+  const hayBuild = fs.existsSync(path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../panel/dist/index.html'));
+
+  it.skipIf(!hayBuild)('el manifest de la app instalable lleva el nombre del consultorio', async () => {
+    const r = await request(app).get('/panel/manifest.webmanifest').expect(200);
+    expect(r.headers['content-type']).toMatch(/manifest\+json/);
+    const m = JSON.parse(r.text);
+    const [c] = await q('SELECT marca FROM consultorio');
+    expect(m).toMatchObject({ name: `${c.marca} · Panel`, start_url: '/panel/', scope: '/panel/', display: 'standalone' });
+    expect(m.icons.some((i: any) => i.purpose === 'maskable')).toBe(true);
+    const sw = await request(app).get('/panel/sw.js').expect(200);
+    expect(sw.headers['cache-control']).toBe('no-cache');
+  });
+
+  it('el panel, la API y la página del turno no se indexan; la landing sí', async () => {
+    expect((await request(app).get('/api/salud')).headers['x-robots-tag']).toBe('noindex, nofollow');
+    expect((await request(app).get('/turno')).headers['x-robots-tag']).toBe('noindex, nofollow');
+    expect((await request(app).get('/')).headers['x-robots-tag']).toBeUndefined();
+    const robots = await request(app).get('/robots.txt').expect(200);
+    expect(robots.text).toContain('Disallow: /panel');
   });
 });

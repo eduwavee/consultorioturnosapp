@@ -66,6 +66,23 @@ test.describe('Paciente', () => {
   });
 });
 
+test.describe('Acceso del personal', () => {
+  test('el pie de la web lleva al ingreso del panel, que no se indexa', async ({ page }) => {
+    await page.goto('/');
+    await page.getByRole('link', { name: 'Acceso profesionales' }).click();
+    await expect(page.getByRole('heading', { name: 'Ingresar' })).toBeVisible();
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
+    await expect(page.locator('link[rel="manifest"]')).toHaveAttribute('href', '/panel/manifest.webmanifest');
+  });
+
+  test('en Safari, "Instalar app" explica cómo agregarlo al Dock', async ({ page, browserName }) => {
+    test.skip(browserName !== 'webkit', 'Chrome usa su propio instalador');
+    await page.goto('/panel/');
+    await page.getByRole('button', { name: 'Instalar app' }).click();
+    await expect(page.getByRole('dialog', { name: 'Instalar el panel' })).toContainText('Agregar al Dock');
+  });
+});
+
 test.describe('Secretaría', () => {
   test('cambia a vista semanal y ve la agenda de un profesional', async ({ page }) => {
     await entrar(page, 'Secretaría');
