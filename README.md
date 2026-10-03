@@ -86,6 +86,120 @@ El panel es una página aparte de la web pública, en `/panel` (o en una direcci
 
 ---
 
+## Cómo funciona un turno, de punta a punta
+
+```mermaid
+stateDiagram-v2
+  direction LR
+  [*] --> Retenido: el paciente elige un horario en la web
+  Retenido --> Reservado: completa sus datos (tiene 5 min)
+  Retenido --> [*]: no completa o cierra la página · el horario se libera
+  [*] --> Reservado: la secretaria da el turno en el panel
+  Reservado --> Confirmado: responde "Sí" al WhatsApp o confirma con su link
+  Reservado --> EnSala: llega al consultorio
+  Confirmado --> EnSala: llega al consultorio
+  EnSala --> Atendido: la médica cierra la consulta
+  Reservado --> Cancelado
+  Confirmado --> Cancelado
+  Reservado --> Ausente
+  Confirmado --> Ausente
+  Cancelado --> [*]: el horario se ofrece a la lista de espera
+  EnSala: En sala
+```
+
+1. **Reserva.** El paciente entra a la web, elige estudio, día y horario. Ese horario queda **retenido 5 minutos** a su nombre mientras completa nombre, DNI y WhatsApp. Si en ese tiempo otra persona intenta el mismo horario, le aparece ocupado. Si no termina, el horario se libera solo.
+2. **Confirmación en pantalla.** Al terminar ve "Listo, te esperamos" y un **link personal** para gestionar el turno. El turno aparece en la agenda del panel marcado como "web".
+3. **Recordatorio.** **24 horas antes** le llega un WhatsApp con el mismo link. Puede contestar "Sí" o "Confirmo" (el turno pasa a confirmado) o "Cancelar", o entrar al link para confirmar, elegir otro horario o cancelar, hasta 2 horas antes.
+4. **Si cancela o cambia de horario**, ese hueco se ofrece por WhatsApp a los primeros tres pacientes de la **lista de espera** de ese estudio. Lo toma el primero que reserva.
+5. **El día del turno.** La secretaria lo marca **en sala** cuando llega. La médica abre la consulta desde la agenda, completa la ficha y la **cierra**: el turno pasa a **atendido**.
+6. **Cobro.** Desde el turno, "Cobrar" abre la caja con el paciente y el precio del estudio ya cargados. La agenda marca el turno con **$**.
+7. **A fin de mes**, administración descarga el reporte de prestaciones por obra social para facturar.
+
+Todo queda en la auditoría: quién creó, movió, confirmó, cobró o corrigió cada cosa, y cuándo.
+
+---
+
+## Guía de uso
+
+### Primera vez: poner en marcha el consultorio (administración)
+
+Entrá con el usuario de administración y andá a **Configuración**:
+
+1. **Consultorio:** nombre, nombre corto (el que va en el logo), especialidad, dirección, teléfono, WhatsApp para consultas y horarios. Es lo que muestra la web, el pie de las recetas y el nombre de la app instalada.
+2. **Usuarios:** creá una cuenta por persona con su rol. A los profesionales cargales el título ("Médica oftalmóloga") y la matrícula, que salen en las recetas. Cada uno recibe una contraseña inicial y después la cambia desde **Mi contraseña**.
+3. **Estudios:** duración, equipo que usa, precio particular, color en la agenda, descripción para la web y quién lo atiende. Un estudio sin profesional asignado se puede dar desde el panel pero no reservar online.
+4. **Horarios de atención:** las franjas de cada profesional por día de la semana. La web solo ofrece turnos dentro de esas franjas.
+5. **Obras sociales y equipos:** las coberturas que aceptan y los equipos o boxes que comparten los estudios. Dos estudios que usan el mismo equipo nunca se superponen.
+
+Después, cada persona abre el panel en su compu o celular y toca **Instalar app** para tenerlo como un ícono más.
+
+### Un día en recepción (secretaría)
+
+| Qué hacer | Cómo |
+|---|---|
+| **Empezar el día** | **Caja → Abrir caja.** La agenda abre en el día de hoy y se actualiza sola cada 30 segundos, así las reservas web aparecen sin recargar. |
+| **Dar un turno** | **Nuevo turno**: buscá al paciente por nombre o DNI (si es nuevo, cargalo en **Pacientes**), elegí estudio, profesional, día y hora. Si el horario choca con otro turno o con el equipo, el sistema avisa. |
+| **Ver un turno** | Tocá el turno en la agenda: datos del paciente, estudio, precio y acciones. |
+| **Cuando llega el paciente** | **Pasar a sala**. |
+| **Cobrar** | **Cobrar** desde el turno: el paciente y el monto ya vienen cargados; elegí medio de pago y tipo (particular, copago u obra social). Un cobro mal hecho se **anula**, no se borra. |
+| **Mover un turno** | Arrastralo en la agenda al nuevo horario y confirmá, o usá **Reprogramar** en el detalle. Al paciente le llega un recordatorio nuevo. |
+| **Cancelar o marcar ausente** | Desde el detalle del turno. El horario liberado se ofrece a la lista de espera. |
+| **Si alguien quiere venir antes** | **Quiere venir antes** en el detalle de su turno, o **Lista de espera → Agregar paciente**. Cuando se libera un horario, el sistema le avisa solo. |
+| **Ver la semana de un profesional** | Botón **Semana** y elegí el profesional. |
+| **Terminar el día** | **Caja → Imprimir cierre** (totales por medio de pago y detalle, con lugar para firmas) y **Cerrar caja**. Los cobros que lleguen después van a la caja del día siguiente. |
+
+### En el consultorio (médica)
+
+| Qué hacer | Cómo |
+|---|---|
+| **Atender** | En la agenda, tocá el turno → **Iniciar consulta**. La ficha tiene los campos de la especialidad: agudeza visual, refracción, presión ocular, biomicroscopía y fondo de ojo. |
+| **Guardar y cerrar** | **Guardar** las veces que quieras mientras atendés. **Cerrar consulta** al terminar: el turno pasa a atendido. |
+| **Recetas** | **Nueva receta**: anteojos o lentes de contacto (con la refracción de la ficha), medicación u orden de estudio. Se abre lista para imprimir o guardar como PDF. |
+| **Ver la historia** | **Pacientes** → el paciente: todas sus consultas, con sus recetas para reimprimir. Cada vez que abrís una historia queda registrado. |
+| **Corregir algo** | Se puede editar una consulta cerrada: el cambio queda en el **historial**, con tu nombre y el valor anterior. |
+| **Consulta equivocada** | **Anular**, con el motivo. No se borra: queda tachada en la historia. |
+| **Cirugías, congresos, vacaciones** | **Bloquear horario** en la agenda. Nadie puede reservar en esa franja y el sistema te muestra los turnos que ya estaban dados, para reprogramarlos. |
+| **Sobreturno** | En **Nuevo turno**, marcá **Sobreturno**: se superpone a propósito con otro turno. |
+
+### Administración
+
+| Qué hacer | Cómo |
+|---|---|
+| **Facturar a obras sociales** | **Reportes**: elegí el período (por defecto, el mes anterior) y **Descargar CSV**. Se abre en Excel con tildes y columnas separadas: fecha, paciente, DNI, afiliado, prestación, profesional y copago. |
+| **Ver cómo va el mes** | **Auditoría**: turnos del mes, porcentaje de reservas online, ausentismo, lista de espera e ingresos. |
+| **Saber quién hizo qué** | **Auditoría**: cada cambio con usuario, fecha, antes y después (lo clínico se oculta), y quién abrió cada historia clínica. |
+| **Alguien olvidó su contraseña** | **Configuración → Usuarios → Contraseña**: le ponés una nueva y se cierran sus sesiones abiertas. |
+| **Alguien deja de trabajar** | **Desactivar** su usuario: no puede entrar más y se cierran sus sesiones. Su historial queda. |
+
+### Qué hace el paciente
+
+1. Entra a la web y toca **Sacar turno** (o uno de los próximos horarios que aparecen arriba).
+2. Elige estudio, día y horario, completa nombre y apellido, DNI y WhatsApp, y confirma.
+3. Guarda el link que le aparece; también le llega en el recordatorio.
+4. Con ese link confirma, elige otro horario o cancela, hasta 2 horas antes. Después tiene que llamar al consultorio.
+
+### Mensajes de WhatsApp que manda el sistema
+
+| Cuándo | A quién | Ejemplo |
+|---|---|---|
+| 24 h antes del turno | Paciente | *Hola Ana, te recordamos tu turno de consulta el sábado, 3 de octubre a las 10:00 h. Respondé CONFIRMO o CANCELAR, o gestionalo acá: (link)* |
+| Contesta el recordatorio | Paciente | *¡Gracias! Tu turno de consulta del sábado, 3 de octubre a las 10:00 h quedó confirmado.* |
+| Se libera un horario | Primeros 3 de la lista de espera de ese estudio | *Hola Juan, se liberó un turno de consulta el lunes, 5 de octubre a las 09:20 h. Si lo querés, reservalo acá (lo toma el primero que reserve): (link)* |
+
+Sin credenciales de WhatsApp (por ejemplo, en la demo), estos mensajes se imprimen en la consola del servidor en vez de enviarse.
+
+### Preguntas frecuentes
+
+- **¿Qué pasa si dos personas eligen el mismo horario a la vez?** Entra una sola; a la otra le aparece ocupado y elige otro. Lo garantiza la base de datos, no la pantalla.
+- **¿Y si el paciente no confirma?** El turno sigue reservado. "Confirmado" es informativo, para que la secretaria sepa quién avisó que viene.
+- **¿A la lista de espera le llegan avisos a cada rato?** No: a cada persona como mucho uno por día, y solo por horarios con al menos 2 horas de anticipación que sigan libres.
+- **¿La secretaria puede ver las historias clínicas?** No, ni desde el panel ni llamando a la API. Tampoco administración ve el contenido clínico en la auditoría.
+- **¿Se puede borrar una consulta o un cobro?** No. Las consultas se anulan con motivo y los cobros se anulan; todo queda registrado.
+- **¿Qué pasa si se corta internet?** El panel muestra "Sin conexión" y un botón para reintentar. No queda información de pacientes guardada en el dispositivo.
+- **¿Cuánto dura la sesión?** 7 días en cada dispositivo. Con 10 contraseñas incorrectas en 15 minutos desde un mismo lugar, el ingreso se frena un rato.
+
+---
+
 ## Cómo está hecho
 
 ### Dos personas, el mismo horario: entra una sola
